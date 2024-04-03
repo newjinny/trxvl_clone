@@ -11,22 +11,19 @@ window.addEventListener('scroll', function () {
 
 //hamBtn
 const hamBtn = document.querySelector('.ham');
-const sideNav = document.getElementById('mySidenav');
+const sidenav = document.getElementById('mySidenav');
 const closeBtn = document.querySelector('.closeBtn');
-let isBtnOpen = false;
+
 function openNav() {
-  sideNav.style.width = '80%';
+  sidenav.style.width = '80%';
   hamBtn.style.display = 'none';
-  isBtnOpen = true;
 }
 function closeNav() {
-  sideNav.style.width = '0';
+  sidenav.style.width = '0';
   hamBtn.style.display = 'block';
-  isBtnOpen = false;
 }
-hamBtn.addEventListener('click', (event) => {
-  event.stopPropagation();
-  isBtnOpen ? closeNav() : openNav();
+hamBtn.addEventListener('click', () => {
+  openNav();
 });
 closeBtn.addEventListener('click', () => {
   closeNav();
@@ -35,7 +32,7 @@ closeBtn.addEventListener('click', () => {
 document.addEventListener(
   'click',
   function (event) {
-    const isClickInside = sideNav.contains(event.target);
+    const isClickInside = sidenav.contains(event.target);
 
     if (!isClickInside) {
       closeNav();
@@ -43,23 +40,26 @@ document.addEventListener(
   },
   true
 );
-//iconSwiper
+
+// iconSwiper
 let iconSwiper;
-let slidesPerView =
-  window.innerWidth <= 900
-    ? 5
-    : window.innerWidth > 900 && window.innerWidth <= 1200
-    ? 7
-    : 10;
 
 function initIconSwiper() {
+  const slidesPerView =
+    window.innerWidth <= 700
+      ? 5
+      : window.innerWidth > 700 && window.innerWidth <= 1200
+      ? 7
+      : 10;
+
   if (window.innerWidth <= 1200) {
     // Swiper 초기화
     if (iconSwiper) iconSwiper.destroy();
     iconSwiper = new Swiper('.iconSwiper', {
       loop: true,
       slidesPerView,
-      spaceBetween: 30,
+      spaceBetween: 15,
+      centeredSlides: true,
       autoplay: {
         delay: 2000,
         disableOnInteraction: false,
@@ -79,26 +79,20 @@ initIconSwiper();
 // 화면 크기가 변경될 때 스와이퍼를 다시 초기화
 window.addEventListener('resize', function () {
   initIconSwiper();
-  slidesPerView =
-    window.innerWidth <= 900
-      ? 5
-      : window.innerWidth > 900 && window.innerWidth <= 1200
-      ? 7
-      : 10;
 });
-//---------여기까지 iconSwiper-----------
+// ---------여기까지 iconSwiper-----------
 
 //swiper
 let swiper = new Swiper('.top-type', {
-  slidesPerView: 1.7,
+  slidesPerView: 2,
   spaceBetween: 20,
   loop: true,
   breakpoints: {
     900: {
-      slidesPerView: 2.7,
+      slidesPerView: 3,
     },
     1100: {
-      slidesPerView: 3.7,
+      slidesPerView: 4,
     },
   },
 });
@@ -108,20 +102,20 @@ let offersSlide = new Swiper('.offersSlide', {
   loop: true,
   breakpoints: {
     1100: {
-      slidesPerView: 1.7,
+      slidesPerView: 2,
     },
   },
 });
 let connectSlider = new Swiper('.connectSlider', {
-  slidesPerView: 1.7,
+  slidesPerView: 2,
   spaceBetween: 20,
   loop: true,
   breakpoints: {
     900: {
-      slidesPerView: 2.7,
+      slidesPerView: 3,
     },
     1100: {
-      slidesPerView: 3.7,
+      slidesPerView: 4,
     },
   },
 });
