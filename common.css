@@ -1,0 +1,651 @@
+@font-face {
+  font-family: 'helvetica';
+  src: url('./font/Helvetica.woff') format('woff');
+}
+/* --- 공통속성 --- */
+:root {
+  --font-c1: white;
+  --font-c2: #2659c3;
+  --box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+button {
+  cursor: pointer;
+}
+
+section h2 {
+  font-size: 35px;
+  font-weight: bold;
+  padding-bottom: 35px;
+}
+.searchBtn {
+  background-color: var(--font-c1);
+  color: var(--font-c2);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 13px 51px;
+  border-radius: 35px;
+  border: none;
+  transition: 0.3s;
+}
+.searchBtn:hover {
+  color: var(--font-c1);
+  background-color: var(--font-c2);
+}
+.swiper-slide {
+  transition: filter 0.3s ease;
+  margin: 0 2px;
+}
+.swiper-slide:hover {
+  opacity: 0.8;
+}
+
+/* --- wrap,inner --- */
+.wrap {
+  width: 100%;
+  margin: auto;
+  font-family: 'helvetica';
+  position: relative;
+}
+.wrap::before {
+  content: '';
+  width: 100%;
+  height: 24%;
+  position: absolute;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5) 0%,
+      transparent 14%
+    ),
+    linear-gradient(to top, #ffffff 0%, transparent 10%), url(./img/bg_1.jpg);
+  background-size: cover;
+  background-position: center;
+  /* background-clip: padding-box; */
+}
+
+.inner {
+  /* max-width: 1500px; */
+  margin: 0 10vw;
+  /* padding: 0 10vw; */
+  position: relative;
+  z-index: 1;
+}
+.slide-inner {
+  /* max-width: 1500px; */
+  margin-left: 10vw;
+  /* padding-left: 10vw; */
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+}
+.slide-inner section {
+  padding-bottom: 80px;
+}
+
+/* --- header nav --- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  transition: 0.5s;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 27px 52px;
+  position: relative;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+nav ul li {
+  padding: 9px;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+nav ul a {
+  font-size: 18px;
+  color: var(--font-c1);
+}
+nav li:hover {
+  border-bottom: 1px solid var(--font-c1);
+}
+nav .ham {
+  border: none;
+  background: none;
+  color: var(--font-c1);
+  font-size: 25px;
+  position: absolute;
+  left: 2rem;
+  visibility: hidden;
+}
+
+/* --- mainSection --- */
+
+.mainSection h2 {
+  padding: 44px 0;
+  color: var(--font-c1);
+  font-size: 80px;
+  font-weight: bold;
+  line-height: 5rem;
+}
+.mainSection .searchBar {
+  min-width: max-content;
+  padding: 8px 17px;
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(18px);
+  color: var(--font-c1);
+  display: flex;
+  justify-content: space-between;
+}
+.searchBar .inputBoxWrap,
+.inputBoxWrap .check {
+  display: flex;
+  gap: 2rem;
+}
+
+.searchBar .inputBox {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  border: none;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.searchBar .inputBox i {
+  padding-right: 10px;
+}
+.searchBar .inputBox:hover {
+  color: var(--font-c1);
+}
+#searchInput {
+  all: initial;
+  position: relative;
+  min-width: 250px;
+  border: none;
+  font-size: 18px;
+}
+#searchInput:focus {
+  outline: none;
+}
+
+#searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+}
+#searchInput:focus::placeholder {
+  color: transparent;
+}
+.searchBar .inputBox img {
+  width: 22px;
+  margin-right: 9px;
+}
+/* --- nav 미디어쿼리 --- */
+@media (max-width: 1100px) {
+  nav {
+    justify-content: center;
+  }
+  nav ul {
+    display: none;
+  }
+  .mainSection .searchBar {
+    flex-direction: column;
+    background-color: transparent;
+    backdrop-filter: blur(0px);
+  }
+  .searchBar .inputBoxWrap {
+    display: block;
+  }
+  .inputBoxWrap .check,
+  .inputBoxWrap > .inputBox,
+  .searchBar > .inputBox {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 8px 17px;
+    border-radius: 18px;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+
+  .check .inputBox:first-child:after {
+    content: '';
+    height: 12px;
+    width: 2px;
+    transform: translateX(22px);
+    background-color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+  }
+
+  .searchBar .searchBtn {
+    width: 100%;
+  }
+  nav .ham {
+    visibility: visible;
+  }
+}
+/* --- ham 클릭시 sidenav --- */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.sidenav .closeBtn {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font-size: 30px;
+  margin-left: 50px;
+}
+.sidenav .logInBtn {
+  border-bottom: 1px solid gray;
+  padding-bottom: 30px;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sidenav .logInBtn button {
+  /* width: 50%; */
+  background-color: var(--font-c2);
+  color: var(--font-c1);
+  margin-top: 10px;
+  opacity: 1;
+}
+
+.sidenav .logInBtn button:hover {
+  opacity: 0.7;
+}
+.sidenav a {
+  padding: 20px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--font-c2);
+  font-weight: bold;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  transform: scale(1.2);
+}
+
+@media (max-height: 550px) {
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+/* --- Top categories --- */
+.inner .categories {
+  color: var(--font-c1);
+  padding: 40px 0 80px 0;
+}
+.iconsWrap a {
+  display: flex;
+  flex-direction: column;
+  color: var(--font-c1);
+  align-items: center;
+  font-size: 1rem;
+  opacity: 0.4;
+  transition: 0.3s;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.iconsWrap .swiper-slide:hover a {
+  opacity: 1;
+}
+
+/* --- top slide ,type slide --- */
+.top-type-Slide.vacation h2 {
+  color: var(--font-c1);
+}
+.top-type-Slide .top-type .swiper-slide {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  border-radius: 9px;
+  overflow: hidden;
+}
+.top-type-Slide .top-type img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.2s linear;
+}
+.top-type-Slide .top-type span {
+  color: var(--font-c1);
+  position: absolute;
+  bottom: 25px;
+  left: 26px;
+}
+.top-type-Slide.vacation .swiper-slide:hover img {
+  transform: scale(1.4);
+}
+@media (max-width: 1100px) {
+  .vacation {
+    padding-top: 20vw;
+  }
+  .top-type-Slide.vacation h2 {
+    color: black;
+  }
+}
+
+/* --- offers --- */
+.offersSlide .card {
+  padding: 27px 17px;
+  margin-bottom: 10px;
+  border-radius: 18px;
+  display: flex;
+  box-shadow: var(--box-shadow);
+}
+
+.card img {
+  width: 40%;
+  object-fit: cover;
+  border-radius: 23px;
+}
+.card .info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 27px;
+  justify-content: space-between;
+}
+
+.info .textBox p {
+  font-size: 17px;
+  color: rgba(0, 0, 0, 0.5);
+  padding-bottom: 10px;
+}
+.info .textBox p:nth-of-type(2) {
+  height: 2rem;
+}
+.info .textBox h3 {
+  font-size: 26px;
+  height: 3.5rem;
+  margin-bottom: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.card .info button {
+  width: 50%;
+  padding: 1vw 2vw;
+  margin-top: 20px;
+  border-radius: 35px;
+  background-color: var(--font-c2);
+  color: var(--font-c1);
+  border: none;
+}
+@media (max-width: 1100px) {
+  .card {
+    margin: 0 10px;
+  }
+}
+/* --- Plan your trip --- */
+.planBanner {
+  padding-right: 10vw;
+}
+.planBanner .planImg {
+  color: var(--font-c1);
+  position: relative;
+}
+.planImg img {
+  width: 100%;
+  border-radius: 27px;
+}
+.planImg .planText {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  /* white-space: nowrap; */
+}
+.planText h2 {
+  font-size: 4vw;
+  padding-bottom: 2vw;
+}
+.planText span {
+  font-size: 2.5vw;
+}
+/* --- connectSlider --- */
+.connectSlider .connectCard {
+  padding: 18px;
+  margin-bottom: 10px;
+  border-radius: 18px;
+  box-shadow: var(--box-shadow);
+}
+.connectCard img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 26px;
+}
+.connectCard .imgInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 9px;
+}
+
+.imgInfo p {
+  font-size: 27px;
+}
+
+.imgInfo span {
+  font-size: 18px;
+  opacity: 0.5;
+}
+/* --- travel app --- */
+.travelApp {
+  color: var(--font-c1);
+  padding-top: 10vh;
+  background-image: url(./img/image\ 21.png);
+  background-size: cover;
+  position: relative;
+}
+.travelAppWrap {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 88px;
+}
+.travelAppWrap .travelAppBox {
+  margin-bottom: 10vh;
+}
+.travelAppBox h2 {
+  font-size: 53px;
+}
+.travelAppBox p {
+  font-size: 27px;
+}
+
+.travelAppBox > div {
+  display: flex;
+  gap: 35px;
+  padding-top: 35px;
+}
+.travelAppBox > div > div:nth-child(1) {
+  flex: 6;
+}
+.travelAppBox > div > div:nth-child(2) {
+  flex: 1;
+}
+.travelAppBox > div > div:nth-child(3) {
+  flex: 3;
+}
+.travelApp .inputWrap {
+  padding-top: 1px;
+}
+.travelAppBox .inputDesc {
+  font-size: 14px;
+  margin: 18px 0;
+}
+.submitInputWrap {
+  width: 100%;
+  background-color: rgba(240, 240, 240, 0.5);
+  padding: 9px 18px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+#submitInput {
+  all: initial;
+  width: 60%;
+  background-color: transparent;
+}
+#submitInput::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+}
+#submitInput:focus {
+  outline: none;
+}
+#submitInput:focus::placeholder {
+  color: transparent;
+}
+.travelAppWrap .inputBtn button.active {
+  background: none;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 18px;
+  border: none;
+  color: var(--font-c1);
+  font-size: 22px;
+  padding: 9px 18px;
+}
+.travelAppWrap .inputBtn button {
+  background: none;
+  border: none;
+  color: var(--font-c1);
+  font-size: 22px;
+  padding: 9px 18px;
+}
+.travelAppBox span {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.travelAppBox span::before,
+.travelAppBox span::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  background-color: var(--font-c1);
+  height: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.4;
+}
+
+.travelAppBox span::before {
+  top: 4px;
+}
+
+.travelAppBox span::after {
+  bottom: 0;
+}
+.travelAppBox .mobileAppBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.mobileAppBtn img {
+  width: 100%;
+}
+.travelAppWrap > img {
+  width: 300px;
+}
+@media (max-width: 1100px) {
+  .travelApp {
+    text-align: center;
+  }
+  .travelAppWrap > img,
+  .travelAppBox span::before,
+  .travelAppBox span::after,
+  .travelAppBox span {
+    display: none;
+  }
+  .travelAppBox > div {
+    flex-direction: column;
+  }
+  .travelAppBox .mobileAppBtn {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .travelAppBox .mobileAppBtn a {
+    width: 30vw;
+  }
+}
+/* --- footer --- */
+footer {
+  background-color: black;
+  color: var(--font-c1);
+  font-size: 0.875rem;
+  padding: 46px 0px;
+}
+footer .inner {
+  display: flex;
+  align-items: flex-start;
+}
+footer .inner > img {
+  padding-right: 132px;
+  object-fit: none;
+}
+footer .inner .footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex-grow: 1;
+}
+.footerLinks .footerLinksCol {
+  display: flex;
+  justify-content: space-between;
+}
+.footerLinks .footerLinksCol li {
+  margin-bottom: 1rem;
+}
+.footerLinks .footerLinksCol a {
+  color: #808080;
+}
+.footerLinks .socialWrap {
+  display: flex;
+  justify-content: space-between;
+}
+.footerLinks .socialWrap button {
+  padding: 11px 17px;
+  border: 1px solid #808080;
+  background-color: transparent;
+  color: #808080;
+}
+.footerLinks .socialWrap .socialIcons {
+  display: flex;
+  gap: 22px;
+}
+.footerLinks p {
+  color: #808080;
+}
+@media (max-width: 1100px) {
+  footer .inner > img {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .footerLinks .footerLinksCol,
+  .footerLinks .socialWrap {
+    display: block;
+  }
+  .footerLinks .socialWrap .socialIcons {
+    padding-top: 20px;
+  }
+}

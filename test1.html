@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date Picker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <style>
+      .date-picker {
+        position: relative;
+        display: inline-block;
+      }
+
+      .datepicker-input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 200px;
+      }
+
+      /* Hide dropdown arrow for date input */
+      .datepicker-input::-webkit-calendar-picker-indicator {
+        display: none;
+      }
+    </style>
+    <div class="date-picker">
+      <div class="date-picker">
+        <input
+          type="date"
+          id="checkin"
+          class="datepicker-input"
+          placeholder="Checkin"
+          onchange="formatDate(this)"
+          onblur="showPlaceholder(this)"
+          onfocus="hidePlaceholder(this)"
+        />
+      </div>
+    </div>
+
+    <script>
+      function hidePlaceholder(input) {
+        input.setAttribute('placeholder', '');
+      }
+
+      function showPlaceholder(input) {
+        if (!input.value) {
+          input.setAttribute('placeholder', 'Checkin');
+        }
+      }
+
+      function formatDate(input) {
+        if (input.value) {
+          // Parse input value to Date object
+          const date = new Date(input.value);
+
+          // Format date as desired (example format: YYYY-MM-DD)
+          const formattedDate = date.toISOString().split('T')[0];
+
+          // Set formatted date as input value
+          input.value = formattedDate;
+        }
+      }
+    </script>
+  </body>
+</html>
