@@ -68,7 +68,6 @@ section h2 {
   z-index: 1;
 }
 .slide-inner {
-  /* max-width: 1500px; */
   margin-left: 10vw;
   position: relative;
   z-index: 1;
@@ -291,7 +290,7 @@ nav .ham {
   padding: 40px 0 80px 0;
 }
 .iconsWrap a {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   align-items: center;
