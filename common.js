@@ -59,8 +59,7 @@ function initIconSwiper() {
     iconSwiper = new Swiper('.iconSwiper', {
       loop: true,
       slidesPerView,
-      spaceBetween: 27,
-      centeredSlides: true,
+      spaceBetween: 20,
       autoplay: {
         delay: 2000,
         disableOnInteraction: false,
@@ -89,7 +88,7 @@ let swiper = new Swiper('.top-type', {
   spaceBetween: 20,
   loop: true,
   breakpoints: {
-    900: {
+    700: {
       slidesPerView: 3,
     },
     1100: {
