@@ -68,7 +68,7 @@ section h2 {
   z-index: 1;
 }
 .slide-inner {
-  max-width: 1500px;
+  /* max-width: 1500px; */
   margin-left: 10vw;
   position: relative;
   z-index: 1;
@@ -224,6 +224,11 @@ nav .ham {
     visibility: visible;
   }
 }
+@media (max-width: 900px) {
+  .mainSection h2 {
+    font-size: 60px;
+  }
+}
 /* --- ham 클릭시 sidenav --- */
 .sidenav {
   height: 100%;
@@ -280,30 +285,33 @@ nav .ham {
 }
 
 /* --- Top categories --- */
+
 .inner .categories {
   color: var(--font-c1);
   padding: 40px 0 80px 0;
 }
-
 .iconsWrap a {
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
-  color: var(--font-c1);
   align-items: center;
-  font-size: 1rem;
   opacity: 0.4;
   transition: 0.3s;
-  line-height: 1.4;
 }
-
+.iconsWrap img {
+  width: 50px;
+  padding-bottom: 1rem;
+}
+.iconsWrap span {
+  line-height: 1.4;
+  color: var(--font-c1);
+  white-space: nowrap;
+  font-size: 1rem;
+}
 .iconsWrap .swiper-slide:hover a {
   opacity: 1;
 }
-/* @media (max-width: 1200px) {
-  .iconsWrap .swiper-slide {
-    width: 20%;
-  }
-} */
+
 /* --- top slide ,type slide --- */
 .top-type-Slide {
   width: calc(100% + 100px);

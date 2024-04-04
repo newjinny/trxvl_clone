@@ -17,10 +17,12 @@ const closeBtn = document.querySelector('.closeBtn');
 function openNav() {
   sidenav.style.width = '80%';
   hamBtn.style.display = 'none';
+  document.body.style.overflow = 'hidden';
 }
 function closeNav() {
   sidenav.style.width = '0';
   hamBtn.style.display = 'block';
+  document.body.style.overflow = 'auto';
 }
 hamBtn.addEventListener('click', () => {
   openNav();
@@ -53,12 +55,11 @@ function initIconSwiper() {
       : 10;
 
   if (window.innerWidth <= 1200) {
-    // Swiper 초기화
     if (iconSwiper) iconSwiper.destroy();
     iconSwiper = new Swiper('.iconSwiper', {
       loop: true,
       slidesPerView,
-      spaceBetween: 15,
+      spaceBetween: 27,
       centeredSlides: true,
       autoplay: {
         delay: 2000,
