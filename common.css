@@ -1,12 +1,9 @@
-@font-face {
-  font-family: 'helvetica';
-  src: url('./font/Helvetica.woff') format('woff');
-}
-/* --- 공통속성 --- */
 :root {
   --font-c1: white;
   --font-c2: #2659c3;
   --box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+
+  font-family: Arial, Helvetica, sans-serif;
 }
 button {
   cursor: pointer;
@@ -43,7 +40,6 @@ section h2 {
 .wrap {
   width: 100%;
   margin: auto;
-  font-family: 'helvetica';
   position: relative;
 }
 .wrap::before {
